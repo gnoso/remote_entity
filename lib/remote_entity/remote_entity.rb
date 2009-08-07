@@ -12,4 +12,14 @@ class RemoteEntity
      
      self.service, self.resource, self.id = parts
   end
+  
+  # Returns the domain for the service for this application
+  def self.service_domain(service)
+    return "#{service}.gnoso.com"
+  end
+  
+  # Returns the service uri for the given service at the given version
+  def self.service_uri(service, version)
+    return "https://#{self.service_domain(service)}/api/v#{version}/"
+  end
 end
