@@ -1,6 +1,7 @@
 require 'test/unit'
 
 require 'lib/remote_entity'
+require 'lib/remote_entity/entity_resource'
 
 class Test::Unit::TestCase
   # test "verify something" do
