@@ -14,14 +14,15 @@ module RemoteEntity
        self.service, self.resource, self.id = parts
     end
   
-    # Returns the domain for the service for this application
-    def self.service_domain(service)
-      return "#{service}.gnoso.com"
-    end
-  
     # Returns the service uri for the given service at the given version
     def self.service_uri(service, version)
-      return "https://#{self.service_domain(service.to_s)}/api/v#{version.to_s}/"
+      return "#{@@services[service][service_uri]}/api/v#{version.to_s}/"
+    end
+    
+    # Registers a service so that we can build urls from it. Holla!
+    def self.register_service(service_name, service_uri, service_api_key)
+      @@services ||= {}
+      @@[service_name] = { :uri => service_uri, :api_key => service_api_key }
     end
   end
 end

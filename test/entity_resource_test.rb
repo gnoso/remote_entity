@@ -18,5 +18,4 @@ class EntityResourceTest < Test::Unit::TestCase
       sr.gender
     end
   end
-  
 end
