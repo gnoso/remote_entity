@@ -1,7 +1,10 @@
 require 'test/unit'
+require 'ruby-debug'
+require 'fafactory'
 
 require 'lib/remote_entity'
 require 'lib/remote_entity/entity_resource'
+require 'lib/remote_entity/entity_record'
 
 class Test::Unit::TestCase
   # test "verify something" do
