@@ -1,5 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :monkeys
+  map.resources :monkeys, :path_prefix => "/api/v1"
   map.resources :books
 
   # The priority is based upon order of creation: first created -> highest priority.

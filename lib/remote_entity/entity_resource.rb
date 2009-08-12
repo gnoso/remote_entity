@@ -3,13 +3,15 @@ require 'active_resource'
 module RemoteEntity
   class EntityResource < ActiveResource::Base
     
-    def initialize(attrs = {})
+    def initialize(attrs = {})      
       @@schema ||= {}
       @@schema.each do |attribute|
-        attrs[attribute] = nil
+        if !attrs.has_key?(attribute.to_s)
+          attrs[attribute] = nil
+        end
       end
       
-      super
+      super(attrs)
     end
     
     # Defines methods for the following properties on every instance of this

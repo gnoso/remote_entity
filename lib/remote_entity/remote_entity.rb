@@ -20,14 +20,14 @@ module RemoteEntity
     end
     
     # Registers a service so that we can build urls from it. Holla!
-    def self.register_service(service_name, service_uri, service_api_key)
+    def self.register_service(service_name, service_uri, service_api_key = "")
       services[service_name.to_sym] = { :uri => service_uri, 
           :api_key => service_api_key }
     end
     
     def self.lookup_service(service)
       result = services[service.to_sym]
-      raise "Service not found" if !result
+      raise "Service `#{service.to_s}` not found" if !result
       
       return result
     end
