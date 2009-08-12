@@ -1,5 +1,8 @@
 require 'test/test_helper'
 
+RemoteEntity::RemoteEntity.register_service(:cart, "http://cart.local",
+    'test')
+    
 class SchemaResource < RemoteEntity::EntityResource
   self.service = :cart
   self.version = 1

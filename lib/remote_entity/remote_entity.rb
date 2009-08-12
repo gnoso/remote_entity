@@ -16,13 +16,25 @@ module RemoteEntity
   
     # Returns the service uri for the given service at the given version
     def self.service_uri(service, version)
-      return "#{@@services[service][service_uri]}/api/v#{version.to_s}/"
+      return "#{lookup_service(service)[:uri]}/api/v#{version.to_s}/"
     end
     
     # Registers a service so that we can build urls from it. Holla!
     def self.register_service(service_name, service_uri, service_api_key)
+      services[service_name.to_sym] = { :uri => service_uri, 
+          :api_key => service_api_key }
+    end
+    
+    def self.lookup_service(service)
+      result = services[service.to_sym]
+      raise "Service not found" if !result
+      
+      return result
+    end
+    
+    private 
+    def self.services
       @@services ||= {}
-      @@[service_name] = { :uri => service_uri, :api_key => service_api_key }
     end
   end
 end

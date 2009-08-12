@@ -16,13 +16,10 @@ class RemoteEntityTest < Test::Unit::TestCase
     assert_equal 'with-weird-id', ent.id
   end
   
-  test "that the correct domain is returned for a RemoteEntity" do
-    assert_equal 'cart.gnoso.com',
-        RemoteEntity::RemoteEntity.service_domain('cart')
-  end
-  
   test "that the correct resource uri is returned for a RemoteEntity" do
+    RemoteEntity::RemoteEntity.register_service(:cart, "https://cart.gnoso.com",
+        'test')
     assert_equal 'https://cart.gnoso.com/api/v3/', 
-        RemoteEntity::RemoteEntity.service_uri('cart', 3)
+        RemoteEntity::RemoteEntity.service_uri(:cart, 3)
   end
 end
