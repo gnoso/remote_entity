@@ -6,13 +6,14 @@ module RemoteEntity
     def initialize(attrs = {})      
       @@schema ||= []
       
+      attrs = HashWithIndifferentAccess.new(attrs)
       @@schema.each do |attribute|
-        if !attrs.has_key?(attribute.to_s)
-          attrs[attribute.to_s] = nil
+        if !attrs.has_key?(attribute)
+          attrs[attribute] = nil
         end
       end
-      if !attrs.has_key?("remote_entity_id")
-        attrs["remote_entity_id"] = nil
+      if !attrs.has_key?(:remote_entity_id)
+        attrs[:remote_entity_id] = nil
       end
       
       super(attrs)
