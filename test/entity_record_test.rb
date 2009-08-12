@@ -50,4 +50,28 @@ class EntityRecordTest < Test::Unit::TestCase
     
     assert_equal "Mongo", person.monkey.name
   end
+  
+  test "that setting a remote entity as an object works when the remote item doesn't have an id" do
+    
+    person = Person.new
+    monkey = Monkey.new({:name => "Mongo"})
+    assert_equal "Mongo", monkey.name
+    
+    person.monkey = monkey
+    assert_equal "Mongo", person.monkey.name
+    assert_nil person.monkey_id
+  end
+  
+  test "that settingn a remote entity as an object works when the remote item has an id" do
+    person = Person.new
+    monkey = Monkey.new({ :name => "Mongo", 
+        :remote_entity_id => "testapp-monkey-1" })
+    assert_equal "Mongo", monkey.name
+    assert_equal "testapp-monkey-1", monkey.remote_entity_id
+
+    person.monkey = monkey
+    assert_equal "Mongo", person.monkey.name
+    assert_equal "testapp-monkey-1", person.monkey_id
+  end
+  
 end

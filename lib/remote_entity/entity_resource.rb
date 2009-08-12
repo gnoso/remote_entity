@@ -4,11 +4,15 @@ module RemoteEntity
   class EntityResource < ActiveResource::Base
     
     def initialize(attrs = {})      
-      @@schema ||= {}
+      @@schema ||= []
+      
       @@schema.each do |attribute|
         if !attrs.has_key?(attribute.to_s)
-          attrs[attribute] = nil
+          attrs[attribute.to_s] = nil
         end
+      end
+      if !attrs.has_key?("remote_entity_id")
+        attrs["remote_entity_id"] = nil
       end
       
       super(attrs)
