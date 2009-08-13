@@ -65,6 +65,11 @@ module RemoteEntity
       
         define_method("create_#{association_id}") do |*params|
           attributes = params.first
+          
+          self.send("build_#{association_id}", attributes)
+          
+          debugger
+          self.send("#{association_id}").save
         end
       end
     end

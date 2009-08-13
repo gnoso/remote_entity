@@ -87,4 +87,12 @@ class EntityRecordTest < Test::Unit::TestCase
     assert_equal "Mongo", person.monkey.name
     assert_nil person.monkey_id
   end
+  
+  test "that creating a remote entity as an object works" do
+    person = Person.new
+    person.create_monkey({ :name => "Mongo" })
+    
+    assert_equal "Mongo", person.monkey.name
+    assert_not_nil person.monkey_id
+  end
 end
