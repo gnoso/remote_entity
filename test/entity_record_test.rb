@@ -40,6 +40,12 @@ class EntityRecordTest < Test::Unit::TestCase
     assert_equal "1", person.monkey_remote_entity_object.id
   end
   
+  test "that loading a remote entity when it's nil works" do
+    person = Person.new
+    
+    assert_nil person.monkey
+  end
+  
   test "that loading a remote entity via association works" do
     Fafactory.purge('testapp')
     id = Fafactory.create_instance('testapp', 'Monkey', { "name" => "Mongo",
@@ -74,4 +80,11 @@ class EntityRecordTest < Test::Unit::TestCase
     assert_equal "testapp-monkey-1", person.monkey_id
   end
   
+  test "that building a remote entity as an object works" do
+    person = Person.new
+    person.build_monkey({ :name => "Mongo" })
+    
+    assert_equal "Mongo", person.monkey.name
+    assert_nil person.monkey_id
+  end
 end
