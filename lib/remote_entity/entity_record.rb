@@ -16,12 +16,12 @@ module RemoteEntity
       def define_accessible(association_id, options, association_class)
 
             
-        if !private_method_defined?("remote_entity_cache")
+        if !method_defined?("remote_entity_cache")
           define_method("remote_entity_cache") do
             @remote_entity_cache ||= {}
           end
         end
-        if !private_method_defined?("remote_entity_dirty_vals")
+        if !method_defined?("remote_entity_dirty_vals")
           define_method("remote_entity_dirty_vals") do
             @remote_entity_dirty_vals ||= {}
           end
@@ -66,10 +66,10 @@ module RemoteEntity
         define_method("create_#{association_id}") do |*params|
           attributes = params.first
           
-          self.send("build_#{association_id}", attributes)
-          
-          debugger
-          self.send("#{association_id}").save
+          object = association_class.new(attributes)
+          object.save
+
+          self.send("#{association_id}=", object)
         end
       end
     end

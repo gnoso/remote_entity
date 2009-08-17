@@ -11,7 +11,7 @@ class Monkey < ActiveRecord::Base
     end
   end
   
-  private
+  alias_method :old_to_xml, :to_xml
   def to_xml(options = {})
     if !options[:methods]
       options[:methods] = [ :remote_entity_id ]
@@ -19,6 +19,6 @@ class Monkey < ActiveRecord::Base
       options[:methods] << :remote_entity_id
     end
     
-    super(options)
+    old_to_xml(options)
   end
 end
