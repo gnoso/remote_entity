@@ -1,5 +1,3 @@
-require 'active_record'
-
 module RemoteEntity
   module EntityRecord
     module Assocations

@@ -2,6 +2,8 @@ require 'test/unit'
 require 'ruby-debug'
 require 'fafactory'
 
+require 'active_record'
+
 require 'lib/remote_entity'
 require 'lib/remote_entity/entity_resource'
 require 'lib/remote_entity/entity_record_associations'
@@ -23,3 +25,8 @@ class Test::Unit::TestCase
     end
   end
 end
+
+ActiveRecord::Base.establish_connection({
+  :adapter => "sqlite3",
+  :database => "test/test.sqlite3"
+})

@@ -1,10 +1,5 @@
 require 'test/test_helper'
 
-ActiveRecord::Base.establish_connection({
-  :adapter => "sqlite3",
-  :database => "test/test.sqlite3"
-})
-
 RemoteEntity::RemoteEntity.register_service(:testapp, "http://0.0.0.0:3001")
 class Monkey < RemoteEntity::EntityResource
   self.service = :testapp
