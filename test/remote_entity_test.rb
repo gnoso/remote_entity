@@ -22,4 +22,10 @@ class RemoteEntityTest < Test::Unit::TestCase
     assert_equal 'https://cart.gnoso.com/api/v3/', 
         RemoteEntity::RemoteEntity.service_uri(:cart, 3)
   end
+  
+  test "that defining the name of the current service works" do
+    RemoteEntity::RemoteEntity.service = "aservice"
+    
+    assert_equal "aservice", RemoteEntity::RemoteEntity.service
+  end
 end

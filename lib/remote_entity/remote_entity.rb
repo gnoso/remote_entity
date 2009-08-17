@@ -32,6 +32,14 @@ module RemoteEntity
       return result
     end
     
+    def self.service=(service)
+      @@service = service
+    end
+    
+    def self.service
+      @@service ||= nil
+    end
+    
     private 
     def self.services
       @@services ||= {}

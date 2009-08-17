@@ -4,7 +4,7 @@ require 'fafactory'
 
 require 'lib/remote_entity'
 require 'lib/remote_entity/entity_resource'
-require 'lib/remote_entity/entity_record'
+require 'lib/remote_entity/entity_record_associations'
 
 class Test::Unit::TestCase
   # test "verify something" do
