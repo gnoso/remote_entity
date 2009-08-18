@@ -12,7 +12,8 @@ class Person < ActiveRecord::Base
   include RemoteEntity::EntityRecord::Assocations
   
   belongs_to_remote_entity :monkey
-  belongs_to_remote_entity :big_monkey, :class_name => "Monkey"
+  belongs_to_remote_entity :big_monkey, :class_name => "Monkey", 
+      :dependent => :destroy
 end
 
 class EntityRecordAssocationsTest < Test::Unit::TestCase
@@ -100,5 +101,19 @@ class EntityRecordAssocationsTest < Test::Unit::TestCase
     
     assert_equal "Mongo", person.big_monkey.name
     assert_not_nil person.big_monkey.id
+  end
+  
+  test "that destroy dependent option works" do
+    Fafactory.purge('testapp')
+    res = Fafactory.create_instance('testapp', 'Monkey', { "name" => "Mongo",
+        "age" => 5,
+        "gender" => "male" })
+    id = res["monkey"]["id"]
+    remote_entity_id = res["monkey"]["remote_entity_id"]
+    person = Person.create({ :big_monkey_id => remote_entity_id })
+    assert_not_nil person.big_monkey
+    
+    person.destroy
+    assert_nil Monkey.find(:one, id)
   end
 end

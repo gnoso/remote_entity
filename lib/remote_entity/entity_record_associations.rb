@@ -17,6 +17,11 @@ module RemoteEntity
             
           define_accessible(association_id, options, association_class)
           define_constructors(association_id, options, association_class)
+          
+          if options[:dependent] == :destroy
+            define_destroy(association_id, options, association_class)
+            after_destroy "destroy_#{association_id}".to_sym
+          end
         end
     
         private
@@ -77,6 +82,13 @@ module RemoteEntity
             object.save
 
             self.send("#{association_id}=", object)
+          end
+        end
+        
+        def define_destroy(association_id, options, association_class)
+          define_method("destroy_#{association_id}") do
+            object = self.send("#{association_id}")
+            object.destroy
           end
         end
       end
