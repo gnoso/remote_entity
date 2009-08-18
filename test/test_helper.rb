@@ -1,5 +1,6 @@
 require 'test/unit'
 require 'ruby-debug'
+require 'fileutils'
 require 'fafactory'
 
 require 'active_record'
@@ -26,6 +27,10 @@ class Test::Unit::TestCase
     end
   end
 end
+
+# delete the test database and create it again
+FileUtils.rm_f('test/test.sqlite3')
+FileUtils.cp('test/test_structure.sqlite3', 'test/test.sqlite3')
 
 ActiveRecord::Base.establish_connection({
   :adapter => "sqlite3",
