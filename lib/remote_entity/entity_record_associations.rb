@@ -8,8 +8,12 @@ module RemoteEntity
     
       module ClassMethods
         def belongs_to_remote_entity(association_id, options = {})
+          if options[:class_name].nil?
+            options[:class_name] = association_id.to_s.camelize.to_sym 
+          end
+          
           association_class = 
-              Object.const_get(association_id.to_s.camelize.to_sym)
+              Object.const_get(options[:class_name].to_sym)
             
           define_accessible(association_id, options, association_class)
           define_constructors(association_id, options, association_class)

@@ -12,6 +12,7 @@ class Person < ActiveRecord::Base
   include RemoteEntity::EntityRecord::Assocations
   
   belongs_to_remote_entity :monkey
+  belongs_to_remote_entity :big_monkey, :class_name => "Monkey"
 end
 
 class EntityRecordAssocationsTest < Test::Unit::TestCase
@@ -91,5 +92,13 @@ class EntityRecordAssocationsTest < Test::Unit::TestCase
     
     assert_equal "Mongo", person.monkey.name
     assert_not_nil person.monkey_id
+  end
+  
+  test "that customizing the class name for a belongs_to_remote_entity association works" do
+    person = Person.new
+    person.create_big_monkey({ :name => "Mongo" })
+    
+    assert_equal "Mongo", person.big_monkey.name
+    assert_not_nil person.big_monkey.id
   end
 end
