@@ -1,7 +1,7 @@
 require 'test/test_helper'
 
 RemoteEntity::RemoteEntity.register_service(:cart, "http://cart.local",
-    'test')
+    'some_dumb_api_key')
     
 class SchemaResource < RemoteEntity::EntityResource
   self.service = :cart
@@ -20,5 +20,10 @@ class EntityResourceTest < Test::Unit::TestCase
       sr.age
       sr.gender
     end
+  end
+  
+  test "that the api key gets set correctly" do
+    assert_equal "some_dumb_api_key", SchemaResource.user
+    assert_equal "", SchemaResource.password
   end
 end

@@ -49,6 +49,12 @@ module RemoteEntity
     def self.update_site
       self.site = RemoteEntity.service_uri(self.service,
           self.version)
+      api_key = RemoteEntity.lookup_service(self.service)[:api_key]
+      
+      if !api_key.nil?
+        self.user = api_key
+        self.password = ""
+      end
     end
   end
 end
