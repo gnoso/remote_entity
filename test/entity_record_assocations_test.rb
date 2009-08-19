@@ -11,8 +11,8 @@ end
 class Person < ActiveRecord::Base
   include RemoteEntity::EntityRecord::Assocations
   
-  belongs_to_remote_entity :monkey
-  belongs_to_remote_entity :big_monkey, :class_name => "Monkey", 
+  belongs_to_remote :monkey
+  belongs_to_remote :big_monkey, :class_name => "Monkey", 
       :dependent => :destroy
 end
 
