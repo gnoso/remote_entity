@@ -70,7 +70,7 @@ You can work with your object just as you would any ActiveResource object.
 Remote Entity also provides a nice way to build relationships with ActiveRecord models using the RemoteEntity::EntityRecord::Associations module.
 
     class Jungle < ActiveRecord::Base
-      belongs_to_remote_entity :monkey
+      belongs_to_remote :monkey
     end
 
 This will add the methods monkey=, monkey, build_monkey and create_monkey to the model. The column for the belongs_to relationship in this example should be called monkey_id, and should be a varchar with a length of 255, since it will contain the monkey's Remote Entity ID.
