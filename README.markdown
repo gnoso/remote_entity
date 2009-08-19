@@ -70,6 +70,8 @@ You can work with your object just as you would any ActiveResource object.
 Remote Entity also provides a nice way to build relationships with ActiveRecord models using the RemoteEntity::EntityRecord::Associations module.
 
     class Jungle < ActiveRecord::Base
+      include RemoteEntity::EntityRecord::Associations
+      
       belongs_to_remote :monkey
     end
 
