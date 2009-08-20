@@ -27,18 +27,4 @@ class EntityRecordTest < Test::Unit::TestCase
     assert_equal "remoteentitytests-cat_tabby-#{tabby.id}",
         tabby.remote_entity_id
   end
-  
-  test "that to_xml is including the remote_entity_id correctly" do
-    mouse = Mouse.create({ :name => "Harold" })
-    
-    xml_data = Hash.from_xml(mouse.to_xml)
-    assert_not_nil hash[:mouse][:remote_entity_id]
-  end
-  
-  test "that to_xml is including the remote_entity_id correctly when there's already a methods option given" do
-    mouse = Mouse.create({ :name => "Harold" })
-    
-    xml_data = Hash.from_xml(mouse.to_xml(:except => [ :name ]))
-    assert_not_nil hash[:mouse][:remote_entity_id]
-  end
 end
