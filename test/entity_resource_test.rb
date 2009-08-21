@@ -14,7 +14,7 @@ class EntityResourceTest < Test::Unit::TestCase
   
   test "that the schema method creates methods to read the schema properties" do
     sr = SchemaResource.new
-    
+
     assert_nothing_raised do 
       sr.name
       sr.age
