@@ -48,6 +48,13 @@ module RemoteEntity
       super
     end
     
+    # Gets apis to reconnect. Really useful for testing api clients with 
+    # fafactory.
+    def self.reconnect
+      self.update_site
+      @connection = nil
+    end
+    
     private
     def self.update_site
       self.site = RemoteEntity.service_uri(self.service,
@@ -58,7 +65,10 @@ module RemoteEntity
         self.user = api_key
         self.password = ""
       end
+      
+      @connection_needs_update = true
     end
+    
     def self.get_schema
       @schema || []
     end
