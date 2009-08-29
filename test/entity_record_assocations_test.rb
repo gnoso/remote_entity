@@ -47,9 +47,7 @@ class EntityRecordAssocationsTest < Test::Unit::TestCase
   
   test "that loading a remote entity via association works" do
     Fafactory.purge('testapp')
-    id = Fafactory.create_instance('testapp', 'Monkey', { "name" => "Mongo",
-        "age" => 5,
-        "gender" => "male" })["monkey"]["id"]
+    id = Fafactory.create('testapp', :monkey)["id"]
     
     person = Person.new({ :monkey_id => "testapp-monkey-#{id}" })
     
@@ -105,11 +103,9 @@ class EntityRecordAssocationsTest < Test::Unit::TestCase
   
   test "that destroy dependent option works" do
     Fafactory.purge('testapp')
-    res = Fafactory.create_instance('testapp', 'Monkey', { "name" => "Mongo",
-        "age" => 5,
-        "gender" => "male" })
-    id = res["monkey"]["id"]
-    remote_entity_id = res["monkey"]["remote_entity_id"]
+    res = Fafactory.create('testapp', :monkey)
+    id = res["id"]
+    remote_entity_id = res["remote_entity_id"]
     person = Person.create({ :big_monkey_id => remote_entity_id })
     assert_not_nil person.big_monkey
     

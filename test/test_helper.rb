@@ -2,9 +2,9 @@ require 'test/unit'
 require 'ruby-debug'
 require 'fileutils'
 require 'fafactory'
-
 require 'active_record'
 
+require 'test/factories'
 require 'lib/remote_entity'
 
 class Test::Unit::TestCase
