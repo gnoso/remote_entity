@@ -7,10 +7,11 @@ module RemoteEntity
     # Constructs a new remote entity object.
     def initialize(remote_entity_id)
        parts = remote_entity_id.split('-', 3)
+       
        if parts.length != 3
          raise "Entity id given is not a proper entity id"
        end
-     
+       
        self.service, self.resource, self.id = parts
     end
   
@@ -28,7 +29,6 @@ module RemoteEntity
     def self.lookup_service(service)
       result = services[service.to_sym]
       raise "Service `#{service.to_s}` not found" if !result
-      
       return result
     end
     
@@ -40,7 +40,6 @@ module RemoteEntity
       @@service ||= nil
     end
     
-    private 
     def self.services
       @@services ||= {}
     end
