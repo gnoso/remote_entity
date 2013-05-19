@@ -17,8 +17,7 @@ module RemoteEntity
       super(attrs)
     end
     
-    # Defines methods for the following properties on every instance of this
-    # type that is created
+    # Defines methods for the following properties on every instance of this type that is created
     def self.schema(*args)
       @schema = args
     end
@@ -48,8 +47,7 @@ module RemoteEntity
       super
     end
     
-    # Gets apis to reconnect. Really useful for testing api clients with 
-    # fafactory.
+    # Forces APIs to reconnect (is really useful for testing API clients w/ fafactory)
     def self.reconnect
       self.update_site
       @connection = nil
