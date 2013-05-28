@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
   spec.description   = %q{Remote Entity defines a pattern for working with REST services. It defines a versioning scheme, a remote entity identifier scheme, and adds some useful features to ActiveRecord and ActiveResource for working with those schemes.}
   spec.summary       = %q{Remote Entity defines a pattern for working with REST services.}
   spec.homepage      = "https://github.com/gnoso/remote_entity"
-  spec.license       = "MIT"
+  spec.license       = "Apache License 2.0"
 
   spec.files         = `git ls-files`.split($/)
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
